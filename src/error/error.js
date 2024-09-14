@@ -1,75 +1,58 @@
-const httpStatus = require("httpstatus");
+const httpStatus = require("http-status");
+
 module.exports = {
   noDuplicateError: {
     status: "error",
     error: true,
-    message: "already exists",
-    statusCode: 400,
+    message: "Already exists",
+    statusCode: httpStatus.BAD_REQUEST,
   },
 
   handleValidationError: (err) => {
     let { errors } = err;
-
-    let error_fields = Object.keys(errors);
+    let errorFields = Object.keys(errors);
 
     return {
       status: "error",
       error: true,
       message: "Invalid Fields",
-      fields: error_fields,
-      statusCode: 400,
+      fields: errorFields,
+      statusCode: httpStatus.BAD_REQUEST,
     };
   },
-
-  // handleValidationError: (err) => {
-  //   // Ensure the errors object exists
-  //   const errors = err.errors || {}; // Default to an empty object if not defined
-
-  //   // Get the error fields from the errors object
-  //   const error_fields = Object.keys(errors);
-  //   console.log("Errors:", errors); // Log the actual errors
-
-  //   return {
-  //     status: "error",
-  //     error: true,
-  //     message: "Invalid Fields",
-  //     fields: error_fields,
-  //     statusCode: 400,
-  //   };
-  // },
 
   doesNotExistError: {
     status: "error",
     error: true,
-    statusCode: 400,
-    message: "does not exist",
+    message: "Does not exist",
+    statusCode: httpStatus.NOT_FOUND,
   },
 
   passwordMismatchError: {
     status: "error",
     error: true,
     message: "Invalid password",
-    statusCode: 400,
+    statusCode: httpStatus.UNAUTHORIZED,
   },
 
   invalidTokenError: {
     status: "error",
     error: true,
     message: "Invalid token",
-    statusCode: 400,
+    statusCode: httpStatus.UNAUTHORIZED,
   },
 
   invalidVerificationEmail: {
     status: "error",
     error: true,
-    statusCode: 500,
     message: "Invalid verification email",
+    statusCode: httpStatus.INTERNAL_SERVER_ERROR,
   },
 
   defaultError: {
     status: "error",
     error: true,
-    statusCode: 500,
     message: "Internal Server Error",
+    statusCode: httpStatus.INTERNAL_SERVER_ERROR,
   },
 };

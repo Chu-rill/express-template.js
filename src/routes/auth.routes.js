@@ -5,7 +5,7 @@ const {
   signup,
   deleteUser,
   getAllUsers,
-} = require("../controllers/auth_controller");
+} = require("../controllers/auth.controller");
 const { protect } = require("../middleWare/jwt");
 authRoutes.post("/login", login);
 authRoutes.post("/signup", signup);
