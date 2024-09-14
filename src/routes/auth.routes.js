@@ -7,8 +7,22 @@ const {
   getAllUsers,
 } = require("../controllers/auth.controller");
 const { protect } = require("../middleWare/jwt");
-authRoutes.post("/login", login);
-authRoutes.post("/signup", signup);
+const validator = require("../middleWare/ValidationMiddleware");
+const {
+  login_query_validator,
+  register_query_validator,
+} = require("../validation/auth.validation");
+
+authRoutes.post(
+  "/login",
+  validator.validateSchema(login_query_validator),
+  login
+);
+authRoutes.post(
+  "/signup",
+  validator.validateSchema(register_query_validator),
+  signup
+);
 authRoutes.post("/deleteUser/:userId", protect, deleteUser);
 authRoutes.get("/getUsers", protect, getAllUsers);
 module.exports = authRoutes;

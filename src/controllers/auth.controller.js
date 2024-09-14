@@ -6,17 +6,10 @@ const {
   get_all_users,
 } = require("../service/auth.service");
 const { sendEmailWithTemplate } = require("../utils/email");
-const {
-  login_query_validator,
-  register_query_validator,
-} = require("../validation/auth.validation");
 
 exports.login = async (req, res) => {
   const { username, password } = req.body;
   try {
-    const { error } = login_query_validator.validate({ username, password });
-    if (error) return sendErrorResponse(res, error.details[0].message);
-
     const response = await login_user(username, password);
     return res.status(response.statusCode).send(response);
   } catch (err) {
@@ -28,13 +21,6 @@ exports.login = async (req, res) => {
 exports.signup = async (req, res) => {
   const { username, password, email } = req.body;
   try {
-    const { error } = register_query_validator.validate({
-      username,
-      password,
-      email,
-    });
-    if (error) return sendErrorResponse(res, error.details[0].message);
-
     const response = await register_user(username, password, email);
     if (response.error) {
       return res
