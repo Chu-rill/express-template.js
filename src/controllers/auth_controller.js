@@ -35,11 +35,12 @@ exports.login = async (req, res) => {
 };
 
 exports.signup = async (req, res) => {
-  const { username, password } = req.body;
+  const { username, password, email } = req.body;
   try {
     const { error } = register_query_validator.validate({
       username,
       password,
+      email,
     });
     if (error) {
       return {
@@ -50,7 +51,7 @@ exports.signup = async (req, res) => {
       };
     }
 
-    const response = await register_user(username, password);
+    const response = await register_user(username, password, email);
 
     res.status(response.statusCode).send(response);
   } catch (error) {

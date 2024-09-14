@@ -11,6 +11,11 @@ exports.register_query_validator = joi.object({
     "string.empty": "Password is required",
     "any.required": "Password is a required field",
   }),
+  email: joi.string().email().required().messages({
+    "string.base": "Email must be a string",
+    "string.empty": "Email is required",
+    "any.required": "Email is a required field",
+  }),
 });
 
 exports.login_query_validator = joi.object({

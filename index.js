@@ -1,22 +1,28 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const morgan = require("morgan");
+const helmet = require("helmet");
 const authRoutes = require("./src/routes/auth_routes");
 require("dotenv").config();
 const { connectDB } = require("./src/utils/db");
 const rateLimit = require("express-rate-limit");
 const port = process.env.PORT;
 
-app.use(
-  cors({
-    origin: [process.env.ALLOWED_URL], // Your frontend URL
-    methods: "GET,POST,PUT,DELETE",
-    allowedHeaders: "Content-Type,Authorization",
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: [process.env.ALLOWED_URL], // Your frontend URL
+//     methods: "*",
+//     allowedHeaders: "Content-Type,Authorization",
+//     credentials: true,
+//   })
+// );
 
+//middle ware
+app.use(cors());
 app.use(express.json());
+app.use(helmet());
+app.use(morgan("common"));
 app.use(express.urlencoded({ extended: false }));
 
 // Set up the rate limiter to allow 50 requests per minute (windowMs = 1 minute, max = 50)

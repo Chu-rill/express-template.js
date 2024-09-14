@@ -52,8 +52,7 @@ const login_user = async (username, password) => {
   }
 };
 
-const register_user = async (user_details) => {
-  let { username, password } = user_details;
+const register_user = async (username, password, email) => {
   try {
     let user = await User.findOne({ username });
 
@@ -69,7 +68,7 @@ const register_user = async (user_details) => {
     user = await User.create({
       username,
       password: hashedPassword,
-      profilePicture: profilePicture || "",
+      email,
     });
 
     return {
@@ -78,7 +77,7 @@ const register_user = async (user_details) => {
       statusCode: 201,
       user: {
         username,
-        profilePicture,
+        email,
       },
     };
   } catch (error) {
