@@ -47,6 +47,7 @@ const register_user = async (username, password, email) => {
     const hashedPassword = await encrypt(password);
     user = await createUser({ username, password: hashedPassword, email });
 
+    if (!user) return defaultError;
     return {
       status: "success",
       error: false,
@@ -55,7 +56,7 @@ const register_user = async (username, password, email) => {
     };
   } catch (error) {
     console.log(error);
-    return defaultError(error);
+    return defaultError;
   }
 };
 

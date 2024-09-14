@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const URI = process.env.MONGODB_URI || "mongodb://localhost:27017/quizapp";
+const URI = process.env.MONGODB_URI || "mongodb://localhost:27017/template";
 
 function connectDB() {
   mongoose
