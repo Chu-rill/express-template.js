@@ -1,3 +1,4 @@
+const httpStatus = require("httpstatus");
 module.exports = {
   noDuplicateError: {
     status: "error",
