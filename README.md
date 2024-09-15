@@ -18,16 +18,38 @@ An Express.js project template to kickstart your Node.js applications with a bas
 
 ```bash
 express-template-js/
-├── .env.example       # Example environment variables file
-├── .gitignore         # Files to ignore in version control
-├── package.json       # Project dependencies and scripts
-├── routes/            # Folder for route definitions
-│   └── index.js       # Basic route example
-├── src/               # Main source folder
-│   └── app.js         # Entry point for the Express app
-├── public/            # Folder for static files (CSS, JS, Images)
-├── views/             # Folder for template files (EJS)
-└── README.md          # Project documentation
+├── index.js
+├── package.json
+├── package-lock.json
+├── README.md
+├── src
+│   ├── controllers
+│   │   └── auth.controller.js
+│   ├── error
+│   │   ├── error.js
+│   │   └── validation.error.js
+│   ├── middleWare
+│   │   ├── jwt.js
+│   │   └── ValidationMiddleware.js
+│   ├── models
+│   │   └── User.js
+│   ├── repositories
+│   │   └── user.repository.js
+│   ├── routes
+│   │   └── auth.routes.js
+│   ├── service
+│   │   └── auth.service.js
+│   ├── utils
+│   │   ├── db.js
+│   │   ├── email.js
+│   │   └── encryption.js
+│   ├── validation
+│   │   └── auth.validation.js
+│   └── views
+│       ├── forgetPassword.handlebars
+│       ├── welcome.hbs
+│       └── welcomeMessage.handlebars
+└── vercel.json
 ```
 
 # Prerequisites
