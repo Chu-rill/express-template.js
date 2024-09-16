@@ -7,6 +7,7 @@ const userRoutes = require("./src/routes/user.routes");
 require("dotenv").config();
 const { connectDB } = require("./src/utils/db");
 const rateLimit = require("express-rate-limit");
+const authRoutes = require("./src/routes/auth.routes");
 const port = process.env.PORT;
 
 // app.use(
@@ -39,6 +40,7 @@ app.get("/", async (req, res) => {
 });
 
 app.use("/api/v1/user", userRoutes);
+app.use("/api/v1/auth", authRoutes);
 
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);

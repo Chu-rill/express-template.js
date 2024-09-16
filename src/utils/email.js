@@ -6,17 +6,13 @@ require("dotenv").config();
 
 // Nodemailer setup
 const transporter = nodemailer.createTransport({
-  // host: "sandbox.smtp.mailtrap.io",
   host: process.env.EMAIL_PROVIDER,
   port: process.env.SERVICE_PORT,
-  // port: 2525,
   secure: false,
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
-  logger: true, // Enable logger
-  debug: true, // Enable debug
 });
 
 // Read the template file
@@ -51,10 +47,6 @@ exports.sendEmailWithTemplate = async (email, data) => {
     // Read the template file
     const templateSource = await readTemplateFile();
     // Compile the template
-    console.log("SMTP Configuration:");
-    console.log("Host:", process.env.EMAIL_PROVIDER);
-    console.log("Port:", process.env.SERVICE_PORT);
-    console.log("User:", process.env.EMAIL_USER);
     const emailTemplate = handlebars.compile(templateSource);
 
     const info = await transporter.sendMail({

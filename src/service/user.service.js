@@ -10,7 +10,7 @@ const httpStatus = require("http-status");
 const userRepository = require("../repositories/user.repository");
 
 class UserService {
-  async login(username, password) {
+  async loginUser(username, password) {
     try {
       const user = await userRepository.getUserByUsername(username);
       if (!user) return doesNotExistError;
@@ -36,7 +36,7 @@ class UserService {
     }
   }
 
-  async signup(username, password, email) {
+  async createUser(username, password, email) {
     try {
       let user = await userRepository.getUserByUsername(username);
       if (user) return noDuplicateError;
