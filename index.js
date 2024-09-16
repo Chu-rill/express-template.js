@@ -3,7 +3,7 @@ const app = express();
 const cors = require("cors");
 const morgan = require("morgan");
 const helmet = require("helmet");
-const authRoutes = require("./src/routes/auth.routes");
+const userRoutes = require("./src/routes/user.routes");
 require("dotenv").config();
 const { connectDB } = require("./src/utils/db");
 const rateLimit = require("express-rate-limit");
@@ -38,7 +38,7 @@ app.get("/", async (req, res) => {
   res.json({ success: true, message: "Backend Connected Successfully" });
 });
 
-app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/user", userRoutes);
 
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
