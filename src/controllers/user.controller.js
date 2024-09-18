@@ -3,9 +3,9 @@ const userService = require("../service/user.service");
 
 class UserController {
   async deleteUser(req, res) {
-    const { userId } = req.params;
+    const { id } = req.params;
     try {
-      const response = await userService.deleteUser(userId);
+      const response = await userService.deleteUser(id);
       if (response.status === "success") res.cookie("jwt", "", { maxAge: 0 });
 
       return res.status(response.statusCode).send(response);
@@ -28,28 +28,44 @@ class UserController {
   async getUser(req, res) {
     const { id } = req.params;
     try {
-      const user = await userService.getUserById(id);
-      if (!user) {
-        return res.status(404).json({ message: "User not found" });
-      }
-      return res.json(user);
+      const response = await userService.findById(id);
+
+      return res.status(response.statusCode).send(response);
     } catch (err) {
       console.error("Get user error:", err);
       return res.status(500).json({ message: "Internal server error" });
     }
   }
 
+  // async updateUser(req, res) {
+  //   const { id } = req.params;
+  //   const {username,password} = req.body
+  //   try {
+  //     const updatedUser = await userService.updateUser(id, req.body);
+  //     if (!updatedUser) {
+  //       return res.status(404).json({ message: "User not found" });
+  //     }
+  //     return res.json(updatedUser);
+  //   } catch (err) {
+  //     console.error("Update user error:", err);
+  //     return res.status(500).json({ message: "Internal server error" });
+  //   }
+  // }
   async updateUser(req, res) {
     const { id } = req.params;
+    const { username, password } = req.body;
+
     try {
-      const updatedUser = await userService.updateUser(id, req.body);
-      if (!updatedUser) {
-        return res.status(404).json({ message: "User not found" });
-      }
-      return res.json(updatedUser);
+      // Call the update service
+      const response = await userService.updateUser(id, { username, password });
+
+      return res.status(response.statusCode).send(response);
     } catch (err) {
       console.error("Update user error:", err);
-      return res.status(500).json({ message: "Internal server error" });
+      return res.status(500).json({
+        status: "error",
+        message: "Internal server error",
+      });
     }
   }
 }

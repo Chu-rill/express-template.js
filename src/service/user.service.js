@@ -96,6 +96,24 @@ class UserService {
       return defaultError(error);
     }
   }
+  async getUser(id) {
+    try {
+      const users = await userRepository.findById(id);
+      if (!users || users.length === 0)
+        return { status: "error", message: "No user found." };
+
+      return {
+        status: "success",
+        error: false,
+        statusCode: httpStatus.OK,
+        message: "Users retrieved successfully",
+        data: users,
+      };
+    } catch (error) {
+      console.error(error);
+      return defaultError(error);
+    }
+  }
 }
 
 module.exports = new UserService();
