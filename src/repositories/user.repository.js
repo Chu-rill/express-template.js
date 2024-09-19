@@ -23,7 +23,7 @@ class UserRepository {
 
   // Update a user by ID
   async update(id, updatedUser) {
-    return await User.findByIdAndUpdate(id, updatedUser, { new: true });
+    return await User.findByIdAndUpdate(id, updatedUser);
   }
 
   // Delete a user by ID

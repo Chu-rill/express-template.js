@@ -53,11 +53,10 @@ class UserController {
   // }
   async updateUser(req, res) {
     const { id } = req.params;
-    const { username, password } = req.body;
 
     try {
       // Call the update service
-      const response = await userService.updateUser(id, { username, password });
+      const response = await userService.updateUser(id, req.body);
 
       return res.status(response.statusCode).send(response);
     } catch (err) {

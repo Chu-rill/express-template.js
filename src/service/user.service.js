@@ -114,6 +114,74 @@ class UserService {
       return defaultError(error);
     }
   }
+  // async updateUser(id, updateData) {
+  //   try {
+  //     const user = await userRepository.findById(id);
+
+  //     // Check if the user exists
+  //     if (!user || user.length === 0) {
+  //       return { status: "error", message: "No user found." };
+  //     }
+
+  //     // Update the user details
+  //     const updatedUser = await userRepository.update(id, updateData);
+
+  //     if (!updatedUser) {
+  //       return {
+  //         status: "error",
+  //         message: "Failed to update user."
+  //       };
+  //     }
+
+  //     return {
+  //       status: "success",
+  //       error: false,
+  //       statusCode: httpStatus.OK,
+  //       message: "User updated successfully",
+  //       data: updatedUser
+  //     };
+  //   } catch (error) {
+  //     console.error(error);
+  //     return defaultError(error);
+  //   }
+  // }
+  async updateUser(id, reg) {
+    const updateData = req.body;
+    try {
+      const user = await userRepository.findById(id);
+
+      // Check if the user exists
+      if (!user) {
+        return {
+          status: "error",
+          statusCode: 404,
+          message: "No user found.",
+        };
+      }
+
+      // Update the user details
+      const updatedUser = await userRepository.update(id, updateData);
+
+      if (!updatedUser) {
+        return {
+          status: "error",
+          statusCode: 400,
+          message: "Failed to update user.",
+        };
+      }
+
+      return {
+        status: "success",
+        error: false,
+        statusCode: httpStatus.OK,
+        message: "User updated successfully",
+        data: updatedUser,
+      };
+    } catch (error) {
+      console.error(error);
+      return defaultError(error); // Assuming defaultError is a utility to handle errors
+    }
+  }
 }
 
 module.exports = new UserService();
