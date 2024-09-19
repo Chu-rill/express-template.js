@@ -24,7 +24,8 @@ express-template-js/
 ├── README.md
 ├── src
 │   ├── controllers
-│   │   └── auth.controller.js
+│   │   ├── auth.controller.js
+│   │   └── user.controller.js
 │   ├── error
 │   │   ├── error.js
 │   │   └── validation.error.js
@@ -36,9 +37,11 @@ express-template-js/
 │   ├── repositories
 │   │   └── user.repository.js
 │   ├── routes
-│   │   └── auth.routes.js
+│   │   ├── auth.routes.js
+│   │   └── user.routes.js
 │   ├── service
-│   │   └── auth.service.js
+│   │   ├── auth.service.js
+│   │   └── user.service.js
 │   ├── utils
 │   │   ├── db.js
 │   │   ├── email.js
