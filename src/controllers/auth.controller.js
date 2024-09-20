@@ -1,6 +1,6 @@
 const { sendEmailWithTemplate } = require("../utils/email");
 const userService = require("../service/user.service");
-
+const emailService = require("../utils/email");
 class AuthController {
   async login(req, res) {
     const { username, password } = req.body;
@@ -27,7 +27,7 @@ class AuthController {
         subject: "Welcome to Express Template",
         username: username,
       };
-      await sendEmailWithTemplate(email, data);
+      await emailService.sendEmailWithTemplate(email, data);
       return res.status(response.statusCode).send(response);
     } catch (err) {
       console.error("Signup error:", err);

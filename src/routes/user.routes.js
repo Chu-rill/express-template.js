@@ -7,7 +7,7 @@ const userRoutes = express.Router();
 userRoutes.get("/users", protect, userController.getAllUsers);
 userRoutes.get("/user/:id", protect, userController.getUser);
 
-userRoutes.put("/users/:id", protect, userController.updateUser);
+userRoutes.put("/user/:id", protect, userController.updateUser);
 // userRoutes.delete("/deleteUser/:id", protect, userController.deleteUserById);
 
 module.exports = userRoutes;

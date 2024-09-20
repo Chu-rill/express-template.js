@@ -80,7 +80,7 @@ class UserService {
 
   async getAllUsers() {
     try {
-      const users = await userRepository.getAllUsers();
+      const users = await userRepository.findAll();
       if (!users || users.length === 0)
         return { status: "error", message: "No users found." };
 
@@ -145,8 +145,7 @@ class UserService {
   //     return defaultError(error);
   //   }
   // }
-  async updateUser(id, reg) {
-    const updateData = req.body;
+  async updateUser(id, updateData) {
     try {
       const user = await userRepository.findById(id);
 
