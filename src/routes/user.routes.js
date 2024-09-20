@@ -8,6 +8,6 @@ userRoutes.get("/users", protect, userController.getAllUsers);
 userRoutes.get("/user/:id", protect, userController.getUser);
 
 userRoutes.put("/user/:id", protect, userController.updateUser);
-// userRoutes.delete("/deleteUser/:id", protect, userController.deleteUserById);
+userRoutes.delete("/deleteUser/:id", protect, userController.deleteUser);
 
 module.exports = userRoutes;

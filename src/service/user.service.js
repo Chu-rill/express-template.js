@@ -61,9 +61,9 @@ class UserService {
     }
   }
 
-  async deleteUser(userId) {
+  async deleteUser(id) {
     try {
-      const user = await userRepository.deleteUserById(userId);
+      const user = await userRepository.delete(id);
       if (!user) return doesNotExistError;
 
       return {
