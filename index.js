@@ -10,15 +10,6 @@ const rateLimit = require("express-rate-limit");
 const authRoutes = require("./src/routes/auth.routes");
 const port = process.env.PORT;
 
-// app.use(
-//   cors({
-//     origin: [process.env.ALLOWED_URL], // Your frontend URL
-//     methods: "*",
-//     allowedHeaders: "Content-Type,Authorization",
-//     credentials: true,
-//   })
-// );
-
 // Set up the rate limiter to allow 50 requests per minute (windowMs = 1 minute, max = 50)
 let limiter = rateLimit({
   max: 100, // 100 requests
