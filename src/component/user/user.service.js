@@ -1,13 +1,13 @@
 const jwt = require("jsonwebtoken");
-const { comparePassword, encrypt } = require("../utils/encryption");
+const { comparePassword, encrypt } = require("../../utils/encryption.js");
 const {
   passwordMismatchError,
   doesNotExistError,
   defaultError,
   noDuplicateError,
-} = require("../error/error");
+} = require("../../error/error.js");
 const httpStatus = require("http-status");
-const userRepository = require("../repositories/user.repository");
+const userRepository = require("./user.repository");
 
 class UserService {
   async loginUser(username, password) {

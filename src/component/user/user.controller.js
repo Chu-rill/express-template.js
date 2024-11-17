@@ -1,5 +1,5 @@
-const sendErrorResponse = require("../error/validation.error");
-const userService = require("../service/user.service");
+const sendErrorResponse = require("../../error/validation.error");
+const userService = require("./user.service");
 
 class UserController {
   async deleteUser(req, res) {

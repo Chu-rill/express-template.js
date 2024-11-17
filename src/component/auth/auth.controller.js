@@ -1,6 +1,6 @@
-const { sendEmailWithTemplate } = require("../utils/email");
-const userService = require("../service/user.service");
-const emailService = require("../utils/email");
+const { sendEmailWithTemplate } = require("../../utils/email");
+const userService = require("../user/user.service");
+const emailService = require("../../utils/email");
 class AuthController {
   async login(req, res) {
     const { username, password } = req.body;

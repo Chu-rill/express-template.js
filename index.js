@@ -3,11 +3,11 @@ const app = express();
 const cors = require("cors");
 const morgan = require("morgan");
 const helmet = require("helmet");
-const userRoutes = require("./src/routes/user.routes");
+const userRoutes = require("./src/component/user/user.routes");
 require("dotenv").config();
 const { connectDB } = require("./src/utils/db");
 const rateLimit = require("express-rate-limit");
-const authRoutes = require("./src/routes/auth.routes");
+const authRoutes = require("./src/component/auth/auth.routes");
 const port = process.env.PORT;
 
 // Set up the rate limiter to allow 50 requests per minute (windowMs = 1 minute, max = 50)
